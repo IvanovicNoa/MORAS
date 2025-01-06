@@ -1,0 +1,118 @@
+@32767
+D=A;
+@5
+M=D;
+
+// RAM[0]
+@0
+D=M;
+@CHECK0
+D; JLE
+
+@5
+D=D-M;
+@UPDATE_MIN0
+D; JLT
+
+@CHECK0
+0; JMP
+
+(UPDATE_MIN0)
+@0
+D=M;
+@5
+M=D; // Ažuriraj najmanju vrijednost
+
+(CHECK0)
+
+// RAM[1]
+@1
+D=M;
+@CHECK1
+D; JLE
+
+@5
+D=D-M;
+@UPDATE_MIN1
+D; JLT
+
+@CHECK1
+0; JMP
+
+(UPDATE_MIN1)
+@1
+D=M;
+@5
+M=D;
+
+(CHECK1)
+
+// RAM[2]
+@2
+D=M;
+@CHECK2
+D; JLE
+
+@5
+D=D-M;
+@UPDATE_MIN2
+D; JLT
+
+@CHECK2
+0; JMP
+
+(UPDATE_MIN2)
+@2
+D=M;
+@5
+M=D;
+
+(CHECK2)
+
+// RAM[3]
+@3
+D=M;
+@CHECK3
+D; JLE
+
+@5
+D=D-M;
+@UPDATE_MIN3
+D; JLT
+
+@CHECK3
+0; JMP
+
+(UPDATE_MIN3)
+@3
+D=M;
+@5
+M=D;
+
+(CHECK3)
+
+// RAM[4]
+@4
+D=M;
+@CHECK4
+D; JLE
+
+@5
+D=D-M;
+@UPDATE_MIN4
+D; JLT
+
+@CHECK4
+0; JMP
+
+(UPDATE_MIN4)
+@4
+D=M;
+@5
+M=D;
+
+(CHECK4)
+
+(END)
+@END
+0; JMP
