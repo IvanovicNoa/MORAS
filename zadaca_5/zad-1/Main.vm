@@ -1,0 +1,225 @@
+function Main.qsort 2
+push argument 1
+push argument 2
+lt
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push argument 2
+pop local 0
+push argument 0
+push argument 1
+push argument 2
+push local 0
+call Main.partition 4
+pop local 1
+push argument 0
+push argument 1
+push local 1
+push constant 1
+sub
+call Main.qsort 3
+pop temp 0
+push argument 0
+push local 1
+push constant 1
+add
+push argument 2
+call Main.qsort 3
+pop temp 0
+label IF_FALSE0
+push constant 0
+return
+function Main.partition 3
+push argument 1
+push constant 1
+sub
+pop local 0
+push argument 1
+pop local 1
+label WHILE_EXP0
+push local 1
+push argument 2
+lt
+not
+if-goto WHILE_END0
+push local 1
+push argument 0
+add
+pop pointer 1
+push that 0
+push argument 3
+push argument 0
+add
+pop pointer 1
+push that 0
+lt
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push local 0
+push constant 1
+add
+pop local 0
+push local 0
+push argument 0
+add
+pop pointer 1
+push that 0
+pop local 2
+push local 0
+push argument 0
+add
+push local 1
+push argument 0
+add
+pop pointer 1
+push that 0
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push local 1
+push argument 0
+add
+push local 2
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+label IF_FALSE0
+push local 1
+push constant 1
+add
+pop local 1
+goto WHILE_EXP0
+label WHILE_END0
+push local 0
+push constant 1
+add
+push argument 0
+add
+pop pointer 1
+push that 0
+pop local 2
+push local 0
+push constant 1
+add
+push argument 0
+add
+push argument 2
+push argument 0
+add
+pop pointer 1
+push that 0
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push argument 2
+push argument 0
+add
+push local 2
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push local 0
+push constant 1
+add
+return
+function Main.print 1
+push constant 0
+pop local 0
+label WHILE_EXP0
+push local 0
+push argument 1
+lt
+not
+if-goto WHILE_END0
+push local 0
+push argument 0
+add
+pop pointer 1
+push that 0
+call Output.printInt 1
+pop temp 0
+push constant 32
+call Output.printChar 1
+pop temp 0
+push local 0
+push constant 1
+add
+pop local 0
+goto WHILE_EXP0
+label WHILE_END0
+call Output.println 0
+pop temp 0
+push constant 0
+return
+function Main.main 1
+push constant 6
+call Array.new 1
+pop local 0
+push constant 0
+push local 0
+add
+push constant 123
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 1
+push local 0
+add
+push constant 71
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 2
+push local 0
+add
+push constant 1
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 3
+push local 0
+add
+push constant 42
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 4
+push local 0
+add
+push constant 131
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 5
+push local 0
+add
+push constant 64
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push local 0
+push constant 0
+push constant 5
+call Main.qsort 3
+pop temp 0
+push local 0
+push constant 6
+call Main.print 2
+pop temp 0
+push local 0
+call Memory.deAlloc 1
+pop temp 0
+push constant 0
+return

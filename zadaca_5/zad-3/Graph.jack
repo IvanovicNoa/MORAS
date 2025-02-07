@@ -1,0 +1,64 @@
+class Graph {
+    function void main() {
+        do Graph.drawAxes();
+        do Graph.drawFunctionGraph();
+        return;
+    }
+
+    function void drawAxes() {
+        var int center;
+        let center = 128;
+        do Screen.setColor(true);
+        do Screen.drawLine(0, center, 255, center);
+        do Screen.drawLine(center, 0, center, 255);
+        return;
+    }
+
+    function void drawFunctionGraph() {
+        var int x, y1, y2;
+        var int screenX1, screenY1, screenX2, screenY2;
+        var boolean y1Valid, y2Valid;
+
+        let x = -32;
+        while (x < 32) {
+            let y1 = Graph.f(x);
+            let y1Valid = true;
+            if (y1 > 32) {
+                let y1Valid = false;
+            }
+            else {
+                if (y1 < -32) {
+                    let y1Valid = false;
+                }
+            }
+
+            let y2 = Graph.f(x + 1);
+            let y2Valid = true;
+            if (y2 > 32) {
+                let y2Valid = false;
+            }
+            else {
+                if (y2 < -32) {
+                    let y2Valid = false;
+                }
+            }
+
+            if (y1Valid & y2Valid) {
+                let screenX1 = 128 + (x * 4);
+                let screenY1 = 128 - (y1 * 4);
+                let screenX2 = 128 + ((x + 1) * 4);
+                let screenY2 = 128 - (y2 * 4);
+                do Screen.setColor(true);
+                do Screen.drawLine(screenX1, screenY1, screenX2, screenY2);
+            }
+
+            let x = x + 1;
+        }
+        return;
+    }
+
+    function int f(int x) {
+        // ovdje se moze staviti bilokoja funkcija
+        return (x * x) / 32;
+    }
+}

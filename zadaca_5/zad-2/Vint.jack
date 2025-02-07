@@ -1,0 +1,106 @@
+class Vint {
+    field Array data;
+    field int capacity;
+
+    constructor Vint new(int n) {
+        var int initialCapacity;
+        if (n < 0) {
+            let initialCapacity = 1;
+        } else {
+            let initialCapacity = 2 * n;
+        }
+        let data = Array.new(initialCapacity);
+        let capacity = initialCapacity;
+        return this;
+    }
+
+    method int len() {
+        return capacity;
+    }
+
+    method void set(int k, int v) {
+        let data[k] = v;
+        return;
+    }
+
+    method int get(int k) {
+        return data[k];
+    }
+
+    method void resize(int m) {
+        var int newCapacity, copyLength, i;
+        var Array newData;
+        if (m < 0) {
+            let newCapacity = 1;
+        } else {
+            let newCapacity = 2 * m;
+        }
+        let newData = Array.new(newCapacity);
+        if (capacity < newCapacity) {
+            let copyLength = capacity;
+        } else {
+            let copyLength = newCapacity;
+        }
+        let i = 0;
+        while (i < copyLength) {
+            let newData[i] = data[i];
+            let i = i + 1;
+        }
+        let data = newData;
+        let capacity = newCapacity;
+        return;
+    }
+
+    function boolean is_eq(Vint a, Vint b) {
+        var int i, len;
+        if (~(a.len() = b.len()))
+        {
+            return false;
+        }
+        let len = a.len();
+        let i = 0;
+        while (i < len) {
+            if (~(a.len() = a.len())) {
+            return false;
+            }
+            let i = i + 1;
+        }
+        return true;
+    }
+
+    function boolean elems(Vint a, Vint b) {
+        var int len, i, j, found;
+        var Array used;
+        if (~(a.len() = b.len()))
+        {
+            return false;
+        }
+        let len = a.len();
+        let used = Array.new(len);
+        let i = 0;
+        while (i < len) {
+            let used[i] = 0;
+            let i = i + 1;
+        }
+        let i = 0;
+        while (i < len) {
+            let found = 0;
+            let j = 0;
+            while (j < len) {
+                if (used[j] = 0) {
+                    if (a.get(i) = b.get(j)) {
+                        let used[j] = 1;
+                        let found = 1;
+                        let j = len;
+                    }
+                }
+                let j = j + 1;
+            }
+            if (found = 0) {
+                return false;
+            }
+            let i = i + 1;
+        }
+        return true;
+    }
+}

@@ -1,0 +1,63 @@
+class Main {
+    function void qsort(Array arr, int left, int right) {
+        var int pivot;
+        var int partitionIndex;
+        
+        if (left < right) {
+            let pivot = right;
+            let partitionIndex = Main.partition(arr, left, right, pivot);
+            do Main.qsort(arr, left, partitionIndex - 1);
+            do Main.qsort(arr, partitionIndex + 1, right);
+        }
+        return;
+    }
+    
+    function int partition(Array arr, int left, int right, int pivot) {
+        var int i, j, temp;
+        let i = left - 1;
+        let j = left;
+        
+        while (j < right) {
+            if (arr[j] < arr[pivot]) {
+                let i = i + 1;
+                let temp = arr[i];
+                let arr[i] = arr[j];
+                let arr[j] = temp;
+            }
+            let j = j + 1;
+        }
+        let temp = arr[i + 1];
+        let arr[i + 1] = arr[right];
+        let arr[right] = temp;
+        
+        return i + 1;
+    }
+    
+    function void print(Array arr, int length) {
+        var int i;
+        let i = 0;
+        while (i < length) {
+            do Output.printInt(arr[i]);
+            do Output.printChar(32);
+            let i = i + 1;
+        }
+        do Output.println();
+        return;
+    }
+
+    function void main() {
+        var Array arr;
+        let arr = Array.new(6);
+        let arr[0] = 123;
+        let arr[1] = 71;
+        let arr[2] = 1;
+        let arr[3] = 42;
+        let arr[4] = 131;
+        let arr[5] = 64;
+        
+        do Main.qsort(arr, 0, 5);
+        do Main.print(arr, 6);
+        do Memory.deAlloc(arr);
+        return;
+    }
+}
